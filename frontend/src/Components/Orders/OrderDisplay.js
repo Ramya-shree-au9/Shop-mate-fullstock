@@ -23,10 +23,17 @@ const OrderDisplay = (props) => {
              <div className='date colorlight'> Ordered on {item.orderedDate.split('T')[0]}</div>
              </div>
              <div className='col-md-2'>
-             { item.discount?
-             <h6 >₹{((item.price - item.discount)*(item.quantity)).toLocaleString()}</h6> 
+               {item.quantity < 2?
+               <>
+             {item.discount?
+             <h6>₹{((item.price - item.discount)*(item.quantity)).toLocaleString()}</h6> 
             :
-             <h6 >₹{(item.price *(item.quantity)).toLocaleString()}</h6> }
+             <h6>₹{(item.price *(item.quantity)).toLocaleString()}</h6>}</>:
+              <>
+             {item.discount?
+             <h6 >₹{((item.price - item.discount)*(item.quantity)).toLocaleString()} <span>({item.quantity} items)</span></h6> 
+            :
+             <h6 >₹{(item.price *(item.quantity)).toLocaleString()} <span>({item.quantity} items)</span></h6>}</>}
           
            </div>
            <div className='col-md-3'>
